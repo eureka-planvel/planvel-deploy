@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLANVEL 관리자</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="auth-container" class="auth-container">
+            <div class="auth-header">
+                <h1>PLANVEL 관리자</h1>
+            </div>
+            
+            <div id="login-form" class="form-container">
+                <h2>관리자 로그인</h2>
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label for="username">아이디</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">비밀번호</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">로그인</button>
+                </form>
+                <p class="register-link">계정이 없으신가요? <a href="#" id="show-register">회원가입</a></p>
+            </div>
+
+            <div id="register-form" class="form-container hidden">
+                <h2>관리자 등록</h2>
+                <form id="admin-register-form">
+                    <div class="form-group">
+                        <label for="reg-username">아이디</label>
+                        <input type="text" id="reg-username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">비밀번호</label>
+                        <input type="password" id="reg-password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-name">이름</label>
+                        <input type="text" id="reg-name" name="name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">등록</button>
+                </form>
+                <p class="login-link">이미 계정이 있으신가요? <a href="#" id="show-login">로그인</a></p>
+            </div>
+        </div>
+
+        <div id="admin-panel" class="admin-panel hidden">
+            <div class="sidebar">
+                <div class="logo">PLANVEL 관리자</div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#" class="active" data-page="account">계정 관리</a></li>
+                    </ul>
+                </nav>
+                <div class="user-info">
+                    <span id="admin-name">로그인 필요</span>
+                    <button id="logout-btn">로그아웃</button>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <div id="account" class="content-page">
+                    <h2>계정 관리</h2>
+                    <div class="account-info">
+                        <h3>내 정보</h3>
+                        <div class="info-group">
+                            <span class="info-label">아이디:</span>
+                            <span id="info-username"></span>
+                        </div>
+                        <div class="info-group">
+                            <span class="info-label">이름:</span>
+                            <span id="info-name"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
