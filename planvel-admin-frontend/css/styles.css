@@ -1,266 +1,151 @@
+/* styles.css - 공통 스타일 */
 :root {
     --primary-color: #3498db;
-    --secondary-color: #2980b9;
-    --success-color: #2ecc71;
+    --secondary-color: #2ecc71;
+    --dark-color: #2c3e50;
+    --light-color: #ecf0f1;
     --danger-color: #e74c3c;
     --warning-color: #f39c12;
     --text-color: #333;
-    --light-text: #666;
-    --lighter-text: #999;
-    --bg-color: #f5f5f5;
-    --card-bg: #fff;
     --border-color: #ddd;
-    --sidebar-width: 250px;
+    --success-color: #27ae60;
 }
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
     font-family: 'Noto Sans KR', sans-serif;
     color: var(--text-color);
-    background-color: var(--bg-color);
+    background-color: #f5f5f5;
     line-height: 1.6;
 }
 
 .container {
     width: 100%;
-    min-height: 100vh;
-}
-
-/* Sidebar Styles */
-.sidebar {
-    width: var(--sidebar-width);
-    background-color: var(--card-bg);
-    padding: 20px 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
-.logo {
-    padding: 0 20px 20px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 20px;
-}
-
-.nav-menu {
-    flex-grow: 1;
-}
-
-.nav-menu ul {
-    list-style: none;
-}
-
-.nav-menu ul li {
-    margin-bottom: 5px;
-}
-
-.nav-menu ul li a {
-    display: block;
-    padding: 12px 20px;
-    text-decoration: none;
-    color: var(--text-color);
-    transition: all 0.3s ease;
-}
-
-.nav-menu ul li a:hover,
-.nav-menu ul li a.active {
-    background-color: var(--bg-color);
-    color: var(--primary-color);
-    border-left: 4px solid var(--primary-color);
-}
-
-.user-info {
-    padding: 20px;
-    border-top: 1px solid var(--border-color);
-    text-align: center;
-}
-
-#admin-name {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
-}
-
-/* Auth Styles */
-.auth-container {
-    max-width: 500px;
-    margin: 50px auto;
-}
-
-.auth-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.auth-header h1 {
-    color: var(--primary-color);
-    font-size: 2rem;
-}
-
-/* Admin Panel Styles */
 .admin-panel {
     display: flex;
-    min-height: 100vh;
-    width: 100%;
+    height: 100vh;
 }
 
-/* Main Content Styles */
 .main-content {
     flex: 1;
-    margin-left: var(--sidebar-width);
-    padding: 30px;
+    padding: 20px;
+    overflow-y: auto;
 }
 
-.form-container {
-    max-width: 500px;
-    margin: 50px auto;
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.content-page {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-.form-container h2 {
+.content-page h2 {
     margin-bottom: 20px;
-    color: var(--primary-color);
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-size: 1rem;
+    color: var(--dark-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
 }
 
 .btn {
+    display: inline-block;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
-    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.3s;
 }
 
 .btn-primary {
     background-color: var(--primary-color);
     color: white;
-    width: 100%;
 }
 
 .btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-success {
     background-color: var(--secondary-color);
+    color: white;
 }
 
-.register-link, .login-link {
-    text-align: center;
-    margin-top: 20px;
+.btn-success:hover {
+    background-color: var(--success-color);
 }
 
-.register-link a, .login-link a {
-    color: var(--primary-color);
-    text-decoration: none;
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
 }
 
-.register-link a:hover, .login-link a:hover {
-    text-decoration: underline;
+.btn-secondary:hover {
+    background-color: #7f8c8d;
 }
 
-/* Content Pages */
-.content-page {
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
 }
 
-.content-page h2 {
-    margin-bottom: 20px;
-    color: var(--primary-color);
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
+.btn-danger:hover {
+    background-color: #c0392b;
 }
 
-/* Dashboard Styles */
-.welcome-message {
-    margin-bottom: 30px;
-}
-
-.stats-container {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.stat-card {
-    flex: 1;
-    min-width: 200px;
-    padding: 20px;
-    background-color: var(--bg-color);
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
-    text-align: center;
-}
-
-.stat-number {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-/* Account Info Styles */
-.account-info {
-    margin-top: 20px;
-}
-
-.info-group {
+.form-group {
     margin-bottom: 15px;
 }
 
-.info-label {
-    font-weight: bold;
-    margin-right: 10px;
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
 }
 
-/* Toast Notification */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+/* 토스트 알림 스타일 */
 .toast {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 25px;
-    background-color: var(--success-color);
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(44, 62, 80, 0.9);
     color: white;
+    padding: 10px 20px;
     border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    z-index: 1001;
+    font-size: 14px;
 }
 
-.toast.error {
-    background-color: var(--danger-color);
-}
-
-/* Utility Classes */
+/* 유틸리티 클래스 */
 .hidden {
     display: none !important;
 }

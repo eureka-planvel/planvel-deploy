@@ -14,13 +14,13 @@ services:
     #depends_on:
     #  - user
 
-
   admin:
     build: ./planvel-admin
     ports: 
       - "8080:8080"
     volumes:
       - ./uploads:/uploads
+
   user:
     build: ./planvel-backend
     ports:

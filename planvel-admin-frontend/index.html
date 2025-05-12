@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PLANVEL 관리자</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
     <div class="container">
@@ -49,42 +50,11 @@
                 <p class="login-link">이미 계정이 있으신가요? <a href="#" id="show-login">로그인</a></p>
             </div>
         </div>
-
-        <div id="admin-panel" class="admin-panel hidden">
-            <div class="sidebar">
-                <div class="logo">PLANVEL 관리자</div>
-                <nav class="nav-menu">
-                    <ul>
-                        <li><a href="#" class="active" data-page="account">계정 관리</a></li>
-                    </ul>
-                </nav>
-                <div class="user-info">
-                    <span id="admin-name">로그인 필요</span>
-                    <button id="logout-btn">로그아웃</button>
-                </div>
-            </div>
-            
-            <div class="main-content">
-                <div id="account" class="content-page">
-                    <h2>계정 관리</h2>
-                    <div class="account-info">
-                        <h3>내 정보</h3>
-                        <div class="info-group">
-                            <span class="info-label">아이디:</span>
-                            <span id="info-username"></span>
-                        </div>
-                        <div class="info-group">
-                            <span class="info-label">이름:</span>
-                            <span id="info-name"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div id="toast" class="toast hidden"></div>
     
-    <script src="js/script.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계정 관리 - PLANVEL 관리자</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/account.css">
+</head>
+<body>
+    <div class="container">
+        <div id="admin-panel" class="admin-panel">
+            <!-- 사이드바 컴포넌트 포함 -->
+            <div id="sidebar-container"></div>
+            
+            <div class="main-content">
+                <div id="account" class="content-page">
+                    <h2>계정 관리</h2>
+                    <div class="account-info">
+                        <h3>내 정보</h3>
+                        <div class="info-group">
+                            <span class="info-label">아이디:</span>
+                            <span id="info-username"></span>
+                        </div>
+                        <div class="info-group">
+                            <span class="info-label">이름:</span>
+                            <span id="info-name"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    
+    <script src="js/common.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/account.js"></script>
+</body>
+</html>

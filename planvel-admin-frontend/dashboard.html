@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대시보드 - PLANVEL 관리자</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <div id="admin-panel" class="admin-panel">
+            <!-- 사이드바 컴포넌트 포함 -->
+            <div id="sidebar-container"></div>
+            
+            <div class="main-content">
+                <div id="dashboard" class="content-page">
+                    <h2>대시보드</h2>
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <h3>등록된 시간표</h3>
+                            <p class="stat-value" id="timetable-count">로딩 중...</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>총 역/터미널</h3>
+                            <p class="stat-value" id="station-count">로딩 중...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    
+    <script src="js/common.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
