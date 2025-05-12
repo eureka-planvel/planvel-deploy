@@ -3,3 +3,6 @@ planvel-admin/*
 
 planvel-backend/*
 !planvel-backend/.gitkeep
+
+uploads/*
+!uploads/.gitkeep

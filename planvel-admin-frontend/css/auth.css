@@ -1,0 +1,50 @@
+/* auth.css - 인증 페이지 스타일 */
+.auth-container {
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    padding: 20px 0;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.register-link,
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.register-link a,
+.login-link a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.register-link a:hover,
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* 로그인/회원가입 토글 애니메이션 */
+.form-container {
+    transition: all 0.3s ease;
+}
+
+.form-container.hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+}

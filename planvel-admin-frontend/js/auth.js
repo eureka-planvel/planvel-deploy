@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 로그인 성공 처리 함수
     function loginSuccess(adminData) {
         // 페이지 이동
-        window.location.href = '/dashboard.html';
+        window.location.href = '/admin-frontend/dashboard.html';
     }
     
     // 로그인 폼 표시 함수
