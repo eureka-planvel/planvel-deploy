@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>숙소 등록 - PLANVEL 관리자</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/accommodation.css">
+</head>
+<body>
+    <div id="admin-panel" class="admin-panel">
+        <!-- ✅ 사이드바 위치 -->
+        <div id="sidebar-container"></div>
+
+        <div class="main-content">
+            <h2>숙소 등록</h2>
+                <!-- accommodation-register.html -->
+                <form id="accommodation-form" enctype="multipart/form-data">
+                    <!-- ✅ action, method 제거 -->
+                    <label for="regionId">지역:</label>
+                    <select name="regionId" id="regionId" required></select><br><br>
+
+                    <label for="name">숙소명:</label>
+                    <input type="text" name="name" id="name" required><br><br>
+
+                    <label for="address">주소:</label>
+                    <input type="text" name="address" id="address" required><br><br>
+
+                    <label for="pricePerNight">1박 가격:</label>
+                    <input type="number" name="pricePerNight" id="pricePerNight" required><br><br>
+
+                    <label>호텔 여부:</label>
+                    <input type="radio" name="isHotel" value="true" required>호텔</label>
+                    <label><input type="radio" name="isHotel" value="false"> 기타</label>
+
+                    <div id="imageDropArea" class="image-drop-area">
+                        <p>이미지를 이곳에 끌어다 놓거나 <b>붙여넣기(Ctrl+V)</b>하세요</p>
+                        <input type="file" name="image" id="image" accept="image/*" required style="display:none">
+                        <div id="previewContainer" class="preview-container" style="display:none">
+                            <img id="imagePreview" src="" alt="이미지 미리보기">
+                            <button type="button" id="removeImage">삭제</button>
+                        </div>
+                    </div><br><br>
+
+                    <button type="submit">등록하기</button>
+                </form>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/accommodation-register.js"></script>
+</body>
+</html>

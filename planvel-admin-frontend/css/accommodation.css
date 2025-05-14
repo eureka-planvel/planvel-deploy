@@ -1,0 +1,33 @@
+.image-drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.image-drop-area.active {
+    background-color: #f0f0f0;
+    border-color: #007bff;
+}
+
+.preview-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#imagePreview {
+    max-width: 300px;
+    max-height: 200px;
+    margin-bottom: 10px;
+}
+
+#removeImage {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}

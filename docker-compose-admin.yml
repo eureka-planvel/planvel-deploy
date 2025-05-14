@@ -1,0 +1,25 @@
+services:
+  admin:
+    build: ./planvel-admin  
+    container_name: planvel-admin
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./uploads:/uploads
+    networks:
+      - planvel-network
+
+  nginx-admin:
+    build: ./planvel-admin-frontend
+    container_name: planvel-nginx-admin
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx/admin.conf:/etc/nginx/conf.d/default.conf
+      - ./uploads:/usr/share/nginx/uploads
+    networks:
+      - planvel-network
+
+networks:
+  planvel-network:
+    external: true

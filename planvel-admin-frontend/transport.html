@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>운송 관리 - PLANVEL 관리자</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/transport.css">
 </head>
 <body>
@@ -17,24 +18,25 @@
                 <div id="transport" class="content-page">
                     <h2>운송 관리</h2>
                     <div class="tab-container">
-                        <div class="tabs">
+                        <!-- 최상위 탭 -->
+                        <div class="tabs main-tabs">
                             <button class="tab-btn active" data-tab="timetable">시간표 관리</button>
                             <button class="tab-btn" data-tab="station">역/터미널 관리</button>
                         </div>
                         
+                        <!-- 시간표 탭 내용 -->
                         <div id="timetable-tab" class="tab-content">
+                            <!-- 서브 탭 (교통 유형별) -->
+                            <div class="tabs sub-tabs">
+                                <button class="sub-tab-btn active" data-transport-type="TRAIN">기차</button>
+                                <button class="sub-tab-btn" data-transport-type="BUS">버스</button>
+                            </div>
+                            
                             <div class="search-container">
                                 <h3>시간표 검색</h3>
                                 <form id="timetable-search-form">
+                                    <input type="hidden" id="transport-type" name="transportType" value="TRAIN">
                                     <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="transport-type">교통 유형</label>
-                                            <select id="transport-type" name="transportType">
-                                                <option value="">전체</option>
-                                                <option value="TRAIN">기차</option>
-                                                <option value="BUS">버스</option>
-                                            </select>
-                                        </div>
                                         <div class="form-group">
                                             <label for="departure-station">출발지</label>
                                             <select id="departure-station" name="departureStationId">
@@ -78,21 +80,30 @@
                             </div>
                         </div>
                         
+                        <!-- 역/터미널 탭 내용 -->
                         <div id="station-tab" class="tab-content hidden">
+                            <!-- 서브 탭 (교통 유형별) -->
+                            <div class="tabs sub-tabs">
+                                <button class="sub-tab-btn active" data-station-type="TRAIN">기차역</button>
+                                <button class="sub-tab-btn" data-station-type="BUS">버스터미널</button>
+                            </div>
+                            
                             <div class="search-container">
                                 <h3>역/터미널 검색</h3>
                                 <form id="station-search-form">
+                                    <input type="hidden" id="station-type" name="type" value="TRAIN">
                                     <div class="form-row">
                                         <div class="form-group">
-                                            <label for="station-type">유형</label>
-                                            <select id="station-type" name="type">
-                                                <option value="">전체</option>
-                                                <option value="TRAIN">기차역</option>
-                                                <option value="BUS">버스터미널</option>
-                                            </select>
+                                            <label for="station-name">이름</label>
+                                            <input type="text" id="station-name" name="name" placeholder="역/터미널 이름">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="station-region">지역</label>
+                                            <input type="text" id="station-region" name="region" placeholder="지역">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">검색</button>
+                                    <button type="button" class="btn btn-success" id="add-station-btn">역/터미널 추가</button>
                                 </form>
                             </div>
                             
@@ -104,12 +115,14 @@
                                             <th>이름</th>
                                             <th>지역</th>
                                             <th>유형</th>
+                                            <th>관리</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <!-- JS로 동적 생성 -->
                                     </tbody>
                                 </table>
+                                <div id="station-pagination" class="pagination"></div>
                             </div>
                         </div>
                     </div>
@@ -125,23 +138,19 @@
             <h2 id="modal-title">시간표 추가</h2>
             <form id="timetable-form">
                 <input type="hidden" id="timetable-id" name="id" value="0">
-                <div class="form-group">
-                    <label for="modal-transport-type">교통 유형</label>
-                    <select id="modal-transport-type" name="transportType" required>
-                        <option value="TRAIN">기차</option>
-                        <option value="BUS">버스</option>
-                    </select>
-                </div>
+                <input type="hidden" id="modal-transport-type" name="transportType" value="TRAIN">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="modal-departure-station">출발지</label>
                         <select id="modal-departure-station" name="departureStationId" required>
+                            <option value="">선택하세요</option>
                             <!-- JS로 동적 생성 -->
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="modal-arrival-station">도착지</label>
                         <select id="modal-arrival-station" name="arrivalStationId" required>
+                            <option value="">선택하세요</option>
                             <!-- JS로 동적 생성 -->
                         </select>
                     </div>
@@ -169,6 +178,32 @@
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">저장</button>
                     <button type="button" class="btn btn-secondary" id="cancel-btn">취소</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 역/터미널 모달 -->
+    <div id="station-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="station-modal-title">역/터미널 추가</h2>
+            <form id="station-form">
+                <input type="hidden" id="station-id" name="id" value="0">
+                <input type="hidden" id="modal-station-type" name="type" value="TRAIN">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-station-name">이름</label>
+                        <input type="text" id="modal-station-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-station-region">지역</label>
+                        <input type="text" id="modal-station-region" name="region" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">저장</button>
+                    <button type="button" class="btn btn-secondary" id="station-cancel-btn">취소</button>
                 </div>
             </form>
         </div>
