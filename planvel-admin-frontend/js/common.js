@@ -7,7 +7,8 @@ const API = {
     ME: '/admin-api/auth/me',
     LOGOUT: '/admin-api/auth/logout',
     REGION: '/admin-api/region',
-    ACCOMMODATION: '/admin-api/accommodation'
+    ACCOMMODATION: '/admin-api/accommodation',
+    SPOT : '/admin-api/spot'
 };
 
 // API 요청 함수

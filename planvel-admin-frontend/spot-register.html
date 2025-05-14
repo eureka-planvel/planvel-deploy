@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>스팟 등록 - PLANVEL 관리자</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/spot.css">
+</head>
+<body>
+    <div id="admin-panel" class="admin-panel">
+        <!-- ✅ 사이드바 위치 -->
+        <div id="sidebar-container"></div>
+
+        <div class="main-content">
+            <h2>스팟 등록</h2>
+            <form id="spot-form" enctype="multipart/form-data">
+                <label for="regionId">지역:</label>
+                <select name="regionId" id="regionId" required></select><br><br>
+
+                <label for="spotName">스팟명:</label>
+                <input type="text" name="spotName" id="spotName" required><br><br>
+
+                <label for="address">주소:</label>
+                <input type="text" name="address" id="address" required><br><br>
+
+                <label for="type">유형:</label>
+                <select name="type" id="type" required>
+                    <option value="FOOD">음식</option>
+                    <option value="TOURIST">관광지</option>
+                    <option value="CAFE">카페</option>
+                </select><br><br>
+
+                <div id="imageDropArea" class="image-drop-area">
+                    <p>이미지를 이곳에 끌어다 놓거나 <b>붙여넣기(Ctrl+V)</b>하세요</p>
+                    <input type="file" name="image" id="image" accept="image/*" required style="display:none">
+                    <div id="previewContainer" class="preview-container" style="display:none">
+                        <img id="imagePreview" src="" alt="이미지 미리보기">
+                        <button type="button" id="removeImage">삭제</button>
+                    </div>
+                </div><br><br>
+
+                <button type="submit">등록하기</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/spot-register.js"></script>
+</body>
+</html>
