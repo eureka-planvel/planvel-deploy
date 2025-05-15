@@ -1,0 +1,80 @@
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    padding: 20px;
+    text-align: left;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.profile-section {
+    margin-bottom: 30px;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+.info-box {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.value {
+    font-size: 14px;
+    color: #333;
+}
+
+.edit-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+
+.edit-btn:hover {
+    transform: scale(1.03);
+}

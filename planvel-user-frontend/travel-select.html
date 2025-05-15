@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planvel - Step 1</title>
+    <link rel="stylesheet" href="css/step-common.css">
+    <link rel="stylesheet" href="css/step1.css">
+</head>
+<body>
+    <div class="header">
+        <span class="logo" onclick="location.href='index.html'">Planvel</span>
+        <div class="user-info">
+            <img src="images/noProfile.png" alt="프로필" class="profile-img">
+            <span>홍길동님</span>
+            <div class="popup-menu" id="popupMenu">
+                <a href="my-info-view.html">내 정보</a>
+                <a href="my-reviews.html">내가 쓴 리뷰</a>
+                <a href="my-travels.html">내 여행 보기</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="alert-banner" class="alert-banner"></div>
+
+    <div class="step-header">
+        <div class="step-indicator">STEP 1</div>
+        <a href="transport-select.html" class="next">다음 →</a>
+    </div>
+
+    <div class="main-content">
+        <!-- 날짜 선택 -->
+        <div class="input-row">
+            <input type="date" id="startDate" class="date-input">
+            <span class="date-tilde">~</span>
+            <input type="date" id="endDate" class="date-input">
+        </div>
+
+        <!-- 출도착지 선택 -->
+        <div class="input-row">
+            <div id="departure-select" class="location-select">출발지 선택</div>
+            <span class="arrow">→</span>
+            <div id="arrival-select" class="location-select">도착지 선택</div>
+        </div>
+    </div>
+
+    <script src="js/step1.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/user-popup.js"></script>
+</body>
+</html>

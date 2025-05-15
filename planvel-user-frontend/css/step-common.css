@@ -1,0 +1,62 @@
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.step-header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+}
+
+.step-indicator {
+    font-size: 14px;
+    color: #555;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.step-header .prev {
+    position: absolute;
+    left: 35%;
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+}
+
+.step-header .next {
+    position: absolute;
+    right: 35%;
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 60px;
+    gap: 40px;
+}

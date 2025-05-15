@@ -1,0 +1,324 @@
+.two-column-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    height: calc(100vh - 100px);
+    width: 100%;
+}
+
+.info-panel {
+    width: 500px;
+    height: calc(100vh - 120px);
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-radius: 3%;
+    margin: 0 50px 0 100px;
+}
+
+.info-card {
+    padding: 20px;
+    background-color: white;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.info-card .note-line {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 12px;
+}
+
+.info-card .label {
+    width: 70px;
+    font-weight: bold;
+    color: #333;
+}
+
+.info-card .value {
+    color: #555;
+}
+
+
+.schedule-slider {
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    min-height: 300px;
+}
+
+.day-title {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.place-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.add-place-btn {
+    padding: 8px 16px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.day-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.day-title {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: black;
+}
+
+.nav-btn:disabled {
+    color: #ccc;
+    cursor: default;
+}
+
+
+.spot-type-tab {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.spot-type-btn {
+    padding: 8px 16px;
+    border: none;
+    background: #eee;
+    cursor: pointer;
+}
+
+.spot-type-btn.selected {
+    background: black;
+    color: white;
+}
+
+.spot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;  /* 여백도 조금 넉넉하게 */
+    margin-bottom: 20px;
+}
+
+.spot-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.spot-card {
+    width: 80%;
+    aspect-ratio: 1 / 1; /* 정사각형 유지 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 20px;  /* 글자 키움 */
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.spot-card:hover {
+    transform: scale(1.05);
+}
+
+.spot-page-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.schedule-title {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+.schedule-list {
+    list-style: none;
+    padding: 0;
+}
+
+
+
+.schedule-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+
+.schedule-list li button {
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 6px;
+    padding: 4px 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+
+.schedule-list li button:hover {
+    background: black;
+    color: white;
+    border-color: black;
+}
+
+.schedule-list li .drag-handle {
+    cursor: grab;
+    font-size: 16px;
+    color: #999;
+    user-select: none;
+}
+
+
+.save-btn {
+    background: none;
+    border: 1px solid #ffffff;
+    padding: 6px 0px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background 0.2s, color 0.2s;
+}
+
+.save-btn:hover {
+    background: #f8f8f8;
+    color: black;
+}
+
+.schedule-summary {
+    margin-top: 20px;
+}
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+
+.summary-table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.summary-table td {
+    padding: 6px 8px;
+    font-size: 13px;
+    color: #333;
+}
+
+.summary-date {
+    font-weight: bold;
+    width: 80px;
+    white-space: nowrap;
+}
+
+.summary-spots {
+    color: #555;
+}
+
+
+
+/* */
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.popup-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    min-width: 120px;
+    z-index: 100;
+}
+
+.popup-menu a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.popup-menu a:hover {
+    background-color: #f5f5f5;
+}

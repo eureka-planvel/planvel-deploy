@@ -1,0 +1,112 @@
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    padding: 20px;
+    text-align: left;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    color: black;
+    outline: none;
+}
+
+input::placeholder {
+    color: #aaa;
+    font-size: 12px; /* ✅ placeholder 작게 */
+}
+
+input:focus {
+    border-bottom: 2px solid black;
+}
+
+.email-check-wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.email-check-wrapper input {
+    flex: 1;
+}
+
+.email-check-wrapper button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 5px 14px; /* ✅ 높이 낮춤 */
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 7px;
+}
+
+
+.full-width-btn {
+    width: 100%;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 12px; /* ✅ 높이 낮춤 */
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.03);
+}
+
+.go-login {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #555;
+    text-align: center;
+}
+
+.go-login a {
+    color: black;
+    text-decoration: underline;
+    font-weight: bold;
+}

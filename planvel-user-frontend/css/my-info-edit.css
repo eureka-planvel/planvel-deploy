@@ -1,0 +1,152 @@
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    padding: 20px;
+    text-align: left;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+#changeProfileBtn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    width: auto;
+    min-width: 120px;
+}
+
+form {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    color: black;
+    outline: none;
+}
+
+input::placeholder {
+    color: #aaa;
+    font-size: 12px;
+}
+
+input:focus {
+    border-bottom: 2px solid black;
+}
+
+.outline-btn {
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: auto;
+    min-width: 120px;
+    display: block;
+    margin: 20px auto 0;
+}
+
+.outline-btn:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.02);
+}
+
+.input-btn-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;  /* ✅ 살짝 줄이기 */
+    margin-top: 4px;
+}
+
+input {
+    flex: 1;
+    margin-right: 4px;  /* ✅ 입력칸 끝과 버튼 간격 자연스럽게 */
+}
+.small-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+    min-width: auto;
+    white-space: nowrap;
+}
+
+.go-back {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    background-color: transparent;
+    color: black;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background-color: #f5f5f5;
+}

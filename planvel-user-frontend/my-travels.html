@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 여행 - Planvel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="css/my-travels.css">
+</head>
+<body>
+    <div class="header">
+        <span class="logo" onclick="location.href='index.html'">Planvel</span>
+        <div class="user-info">
+            <img src="images/noProfile.png" alt="프로필" class="profile-img">
+            <span>홍길동님</span>
+            <div class="popup-menu" id="popupMenu">
+                <a href="my-info-view.html">내 정보</a>
+                <a href="my-reviews.html">내가 쓴 리뷰</a>
+                <a href="my-travels.html">내 여행 보기</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1>내 여행</h1>
+        <div class="empty-msg">
+            등록된 여행이 없습니다.<br>
+            새로운 여행을 시작해보세요.
+        </div>
+
+        <button class="start-btn" onclick="location.href='travel-select.html'">새 여행 시작하기</button>
+    </div>
+</body>
+</html>

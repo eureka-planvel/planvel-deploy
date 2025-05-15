@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 - Planvel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="header">
+        <span class="logo" onclick="location.href='index.html'">Planvel</span>
+    </div>
+
+    <div class="main-content">
+        <h1>로그인</h1>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email" placeholder="이메일 입력" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" placeholder="비밀번호 입력" required>
+            </div>
+
+            <button type="submit" class="full-width-btn">로그인</button>
+        </form>
+
+        <div class="go-signup">
+            계정이 없으신가요? <a href="signup.html">회원가입</a>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

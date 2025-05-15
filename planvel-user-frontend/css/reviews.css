@@ -1,0 +1,109 @@
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.popup-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    min-width: 120px;
+    z-index: 100;
+}
+
+.popup-menu a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.popup-menu a:hover {
+    background-color: #f5f5f5;
+}
+
+.main-content {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.select-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.location-select {
+    font-size: 28px;
+    border-bottom: 1px solid black;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.review-item h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.review-item p {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+.reviewer {
+    font-size: 12px;
+    color: #999;
+}

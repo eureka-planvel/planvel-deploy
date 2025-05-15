@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planvel - 여행 완료</title>
+    <link rel="stylesheet" href="css/step-common.css">
+    <link rel="stylesheet" href="css/finish.css">
+</head>
+<body class="finish-page">
+    <div class="header">
+        <span class="logo" onclick="location.href='index.html'">Planvel</span>
+        <div class="user-info">
+            <img src="images/noProfile.png" alt="프로필" class="profile-img">
+            <span>홍길동님</span>
+            <div class="popup-menu" id="popupMenu">
+                <a href="my-info-view.html">내 정보</a>
+                <a href="my-reviews.html">내가 쓴 리뷰</a>
+                <a href="my-travels.html">내 여행 보기</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ STEP Header (← 이전만) -->
+    <div class="step-header">
+        <a href="spot-select.html" class="prev">← 이전</a>
+        <div class="step-indicator">STEP 5</div>
+    </div>
+
+    <div class="main-content centered-layout">
+        <div class="info-panel">
+            <div class="info-card">
+                <h2>Plan</h2>
+                <div class="note-line"><span class="label">출발지</span><span id="departure-display" class="value">-</span></div>
+                <div class="note-line"><span class="label">도착지</span><span id="arrival-display" class="value">-</span></div>
+                <div class="note-line"><span class="label">여행기간</span><span id="date-display" class="value">-</span></div>
+                <div class="note-line"><span class="label">이동수단</span><span id="transport-display" class="value">-</span></div>
+                <div class="note-line"><span class="label">숙소</span><span id="accommodation-display" class="value">-</span></div>
+
+                <div class="note-line"><span class="label">일정 요약</span></div>
+                <div id="schedule-summary" class="schedule-summary"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/finish.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/user-popup.js"></script>
+</body>
+</html>

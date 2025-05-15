@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 정보 - Planvel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="css/my-info-view.css">
+</head>
+<body>
+    <div class="header">
+        <span class="logo" onclick="location.href='index.html'">Planvel</span>
+    </div>
+
+    <div class="main-content">
+        <h1>내 정보</h1>
+
+        <div class="profile-section">
+            <img src="images/noProfile.png" alt="프로필" class="profile-img" id="profileImage">
+        </div>
+
+        <div class="info-box">
+            <div class="info-item">
+                <span class="label">이름</span>
+                <span class="value">홍길동</span>
+            </div>
+
+            <div class="info-item">
+                <span class="label">이메일</span>
+                <span class="value">hong@example.com</span>
+            </div>
+
+            <div class="info-item">
+                <span class="label">비밀번호</span>
+                <span class="value">******</span>
+            </div>
+        </div>
+
+        <button onclick="location.href='my-info-edit.html'" class="edit-btn">정보 수정</button>
+    </div>
+</body>
+</html>

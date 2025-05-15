@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 정보 - Planvel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="css/my-info-edit.css">
+</head>
+<body>
+    <div class="header">
+        <span class="logo" onclick="location.href='index.html'">Planvel</span>
+    </div>
+
+    <div class="main-content">
+        <h1>내 정보</h1>
+
+        <div class="profile-section">
+            <img src="images/noProfile.png" alt="프로필" class="profile-img" id="profileImage">
+            <input type="file" id="profileInput" accept="image/*" style="display:none">
+            <button type="button" id="changeProfileBtn">프로필 변경</button>
+        </div>
+            <form id="name-form" class="inline-form">
+                <label for="name">이름</label>
+                <div class="input-btn-wrapper">
+                    <input type="text" id="name" name="name" placeholder="새 이름 입력" required>
+                    <button type="submit" class="outline-btn small-btn">이름 변경</button>
+                </div>
+            </form>
+
+            <form id="password-form" class="inline-form">
+                <label for="password">새 비밀번호</label>
+                <div class="input-btn-wrapper">
+                    <input type="password" id="password" name="password" placeholder="새 비밀번호 입력" required>
+                    <button type="submit" class="outline-btn small-btn">비밀번호 변경</button>
+                </div>
+            </form>
+    </div>
+    <div class="go-back">
+    <button onclick="location.href='my-info-view.html'" class="back-btn">← 돌아가기</button>
+</div>
+
+    <script src="js/common.js"></script>
+    <script src="js/my-info.js"></script>
+</body>
+</html>

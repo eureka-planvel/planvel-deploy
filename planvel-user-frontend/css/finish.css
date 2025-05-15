@@ -1,0 +1,158 @@
+/* finish.css */
+
+.centered-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+    background-color: #ffffff;
+}
+
+.info-panel {
+    background-color: white;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
+    width: 600px;
+}
+
+.info-card h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.note-line {
+    display: flex;
+    margin-bottom: 20px;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.label {
+    width: 120px;
+    font-weight: bold;
+}
+
+.value {
+    color: #333;
+}
+
+.schedule-summary div {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.schedule-summary {
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0px;  /* 💡 적당한 높이 */
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* 메인 콘텐츠 */
+body.finish-page .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;  /* 위로 당김 */
+    padding-top: 0;
+    min-height: auto;
+    height: auto;
+}
+
+/* Plan 제목 */
+body.finish-page .info-card h2 {
+    font-size: 60px;
+    font-weight: 200;
+    margin: 0 0 40px 0;
+    text-align: center;
+    letter-spacing: -1px;
+    color: #111;
+}
+
+/* 리스트 라벨 */
+body.finish-page .info-card .note-line .label {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* 리스트 값 */
+body.finish-page .info-card .note-line .value {
+    font-size: 20px;
+    font-weight: 400;
+    color: #555;
+}
+
+/* 일정 요약 */
+body.finish-page .info-card .schedule-summary {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #444;
+    line-height: 1.8;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.popup-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    min-width: 120px;
+    z-index: 100;
+}
+
+.popup-menu a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.popup-menu a:hover {
+    background-color: #f5f5f5;
+}
