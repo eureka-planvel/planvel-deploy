@@ -10,13 +10,18 @@
 <body class="finish-page">
     <div class="header">
         <span class="logo" onclick="location.href='index.html'">Planvel</span>
-        <div class="user-info">
+        <div id="auth-buttons">
+            <button class="login-btn" onclick="location.href='login.html'">로그인</button>
+            <button class="signup-btn" onclick="location.href='signup.html'">회원가입</button>
+        </div>
+        <div class="user-info" id="user-info" style="display: none;">
             <img src="images/noProfile.png" alt="프로필" class="profile-img">
-            <span>홍길동님</span>
+            <span id="username">홍길동님</span>
             <div class="popup-menu" id="popupMenu">
                 <a href="my-info-view.html">내 정보</a>
                 <a href="my-reviews.html">내가 쓴 리뷰</a>
                 <a href="my-travels.html">내 여행 보기</a>
+                <a href="#" id="logoutBtn">로그아웃</a>
             </div>
         </div>
     </div>
@@ -25,6 +30,7 @@
     <div class="step-header">
         <a href="spot-select.html" class="prev">← 이전</a>
         <div class="step-indicator">STEP 5</div>
+        <button id="save-plan-btn" class="next">저장 →</button>
     </div>
 
     <div class="main-content centered-layout">
@@ -45,6 +51,8 @@
 
     <script src="js/finish.js"></script>
     <script src="js/common.js"></script>
-    <script src="js/user-popup.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/login-check.js"></script>
+    <script src="js/save.js"></script>
 </body>
 </html>

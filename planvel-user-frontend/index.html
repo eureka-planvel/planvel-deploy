@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +9,40 @@
 </head>
 <body>
     <div class="header">
-        <button class="login-btn" onclick="location.href='login.html'">로그인</button>
-        <button class="signup-btn" onclick="location.href='signup.html'">회원가입</button>
+        <span class="logo" onclick="location.href='index.html'">Planvel</span>
+        <div id="auth-buttons">
+            <button class="login-btn" onclick="location.href='login.html'">로그인</button>
+            <button class="signup-btn" onclick="location.href='signup.html'">회원가입</button>
+        </div>
+        <div class="user-info" id="user-info" style="display: none;">
+            <img src="images/noProfile.png" alt="프로필" class="profile-img">
+            <span id="username">홍길동님</span>
+            <div class="popup-menu" id="popupMenu">
+                <a href="my-info-view.html">내 정보</a>
+                <a href="my-reviews.html">내가 쓴 리뷰</a>
+                <a href="my-travels.html">내 여행 보기</a>
+                <a href="#" id="logoutBtn">로그아웃</a>
+            </div>
+        </div>
     </div>
     
-        <div class="main-content">
-            <h1 class="main-title">Planvel</h1>
-            <h2 class="main-subtitle">여행을 시작해봐요</h2>
-            
-            <button class="start-btn" onclick="location.href='travel-select.html'">새 여행 시작하기</button>
-                <div class="link-btn-group">
-                    <button class="link-btn" onclick="location.href='my-travels.html'">내 여행 보기</button>
-                    <span class="divider">|</span>
-                    <button class="link-btn" onclick="location.href='region-reviews.html'">둘러보기</button>
-                </div>
+    <div class="main-content">
+        <h1 class="main-title">Planvel</h1>
+        <h2 class="main-subtitle">여행을 시작해봐요</h2>
+        
+        <button class="start-btn" onclick="location.href='travel-select.html'">새 여행 시작하기</button>
+        <div class="link-btn-group">
+            <button class="link-btn" onclick="location.href='my-travels.html'">내 여행 보기</button>
+            <span class="divider">|</span>
+            <button class="link-btn" onclick="location.href='region-reviews.html'">둘러보기</button>
         </div>
+    </div>
     
     <div class="footer">
         <p>© Planvel. Ureca Mini Project S2.</p>
     </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

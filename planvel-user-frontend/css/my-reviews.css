@@ -1,0 +1,95 @@
+/* 내가 쓴 리뷰 페이지 추가 스타일 */
+.section-title {
+    margin-bottom: 30px;
+}
+
+/* 리뷰가 없을 때 메시지 */
+.no-reviews-msg {
+    text-align: center;
+    padding: 50px 0;
+    color: #888;
+    font-size: 16px;
+}
+
+/* 지역 태그 스타일 */
+.region-tag {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #666;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+/* 리뷰 아이템에서 지역 강조 */
+.review-region {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* 정렬 버튼 위치 조정 */
+.review-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+/* 지역별 리뷰 그룹 */
+.region-group {
+    margin-bottom: 30px;
+}
+
+.region-group-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+/* 빈 상태 안내 */
+.empty-state {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.empty-state-icon {
+    font-size: 50px;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.empty-state-text {
+    font-size: 18px;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.go-explore-btn {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.go-explore-btn:hover {
+    background-color: #333;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .review-actions {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    
+    .sort-buttons {
+        margin-top: 10px;
+    }
+}

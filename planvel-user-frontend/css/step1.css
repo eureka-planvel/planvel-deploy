@@ -160,3 +160,73 @@ body {
 .popup-menu a:hover {
     background-color: #f5f5f5;
 }
+
+
+/* 지역 선택 드롭다운 스타일 */
+.location-dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0);
+    max-height: 300px;
+    width: 260px;
+    overflow-y: auto;
+    z-index: 100;
+    margin-top: 5px;
+}
+
+.location-dropdown-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.location-dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.location-dropdown-item.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.location-select {
+    position: relative;
+}
+
+/* 출발지와 도착지가 같을 때 표시하는 경고 스타일 */
+.location-warning {
+    color: #ff4d4f;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
+    display: none;
+}
+
+.location-warning.show {
+    display: block;
+}
+
+/* 로딩 인디케이터 */
+.location-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.loading-spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

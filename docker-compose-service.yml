@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  service-api:
+  service:
     build: ./planvel-backend
     container_name: planvel-service
     ports:
@@ -12,7 +12,7 @@ services:
       - planvel-network
 
   nginx-service:
-    build: ./planvel-admin-frontend
+    build: ./planvel-user-frontend
     container_name: planvel-nginx-service
     ports:
       - "8083:80"   # 서비스 사용자 접근 포트
@@ -26,3 +26,4 @@ services:
 networks:
   planvel-network:
     external: true
+

@@ -5,7 +5,7 @@ document.getElementById('checkEmailBtn').addEventListener('click', function() {
         return;
     }
 
-    fetchAPI(`/admin-api/auth/email-check?email=${encodeURIComponent(email)}`)
+    fetchAPI(`${API.EMAIL_CHECK}?email=${encodeURIComponent(email)}`)
         .then(data => {
             if (data.success) {
                 alert('사용 가능한 이메일입니다.');
@@ -23,13 +23,12 @@ document.getElementById('signup-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const formData = {
-        id: document.getElementById('id').value,
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         password: document.getElementById('password').value
     };
 
-    fetchAPI('/admin-api/auth/register', {
+    fetchAPI(API.REGISTER, {
         method: 'POST',
         body: JSON.stringify(formData)
     })

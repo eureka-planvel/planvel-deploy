@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내가 쓴 리뷰 - Planvel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="css/reviews.css">
+    <link rel="stylesheet" href="css/my-reviews.css">
+</head>
+<body>
+    <div class="header">
+        <span class="logo" onclick="location.href='index.html'">Planvel</span>
+        <div id="auth-buttons">
+            <button class="login-btn" onclick="location.href='login.html'">로그인</button>
+            <button class="signup-btn" onclick="location.href='signup.html'">회원가입</button>
+        </div>
+        <div class="user-info" id="user-info" style="display: none;">
+            <img src="images/noProfile.png" alt="프로필" class="profile-img">
+            <span id="username">홍길동님</span>
+            <div class="popup-menu" id="popupMenu">
+                <a href="my-info-view.html">내 정보</a>
+                <a href="my-reviews.html">내가 쓴 리뷰</a>
+                <a href="my-travels.html">내 여행 보기</a>
+                <a href="#" id="logoutBtn">로그아웃</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <h1 class="section-title">내가 쓴 리뷰</h1>
+        
+        <!-- 정렬 버튼 영역 -->
+        <div class="review-actions">
+            <div class="sort-buttons">
+                <button id="sort-latest" class="sort-button active">최신순</button>
+                <button id="sort-popular" class="sort-button">인기순</button>
+            </div>
+        </div>
+        
+        <div class="review-list" id="review-list">
+            <div class="empty-msg">리뷰를 불러오는 중...</div>
+        </div>
+    </div>
+
+    <!-- 리뷰 수정 모달 -->
+    <div class="modal-overlay" id="review-edit-modal">
+        <div class="modal">
+            <div class="modal-title">리뷰 수정하기</div>
+            <button class="modal-close" id="edit-modal-close">&times;</button>
+            
+            <form id="review-edit-form" class="review-form">
+                <input type="hidden" id="edit-review-id">
+                <div class="form-group">
+                    <label for="edit-review-title">제목</label>
+                    <input type="text" id="edit-review-title" class="form-control" placeholder="리뷰 제목을 입력하세요" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-review-content">내용</label>
+                    <textarea id="edit-review-content" class="form-control review-content" placeholder="이 지역에 대한 경험이나 추천 사항을 남겨주세요" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">리뷰 수정하기</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 리뷰 삭제 확인 모달 -->
+    <div class="modal-overlay" id="delete-confirm-modal">
+        <div class="modal">
+            <div class="modal-title">리뷰 삭제</div>
+            <button class="modal-close" id="delete-modal-close">&times;</button>
+            
+            <p style="margin-bottom: 20px;">정말 이 리뷰를 삭제하시겠습니까?</p>
+            
+            <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                <button id="cancel-delete-btn" style="padding: 8px 15px; background: #f1f1f1; border: none; border-radius: 4px; cursor: pointer;">취소</button>
+                <button id="confirm-delete-btn" style="padding: 8px 15px; background: #e94c4c; color: white; border: none; border-radius: 4px; cursor: pointer;">삭제</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/my-reviews.js"></script>
+</body>
+</html>

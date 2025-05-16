@@ -1,28 +1,37 @@
 const API = {
     LOGIN: '/api/auth/login',
-    REGISTER: '/api/user/register',
     LOGOUT: '/api/auth/logout',
-    EMAIL_CHECK: '/api/user/email-check'
+    REGISTER: '/api/user/register',
+    EMAIL_CHECK: '/api/user/email-check',
+    PROFILE: '/api/user/profile',
+    UPDATE_NAME: '/api/user/profile/name',
+    PROFILE_IMAGE_UPDATE: '/api/user/profile/image',
+    CHANGE_PASSWORD: '/api/user/password',
+    REGION_LIST: '/api/regions',
+    REVIEWS_BY_REGION: '/api/review/region/'
 };
 
 // 공통 API 호출 함수
 async function fetchAPI(endpoint, options = {}) {
-    const defaultOptions = {
+    const isFormData = options.body instanceof FormData;
+
+    const defaultHeaders = isFormData ? {} : { 'Content-Type': 'application/json' };
+
+    const fetchOptions = {
         headers: {
-            'Content-Type': 'application/json'
+            ...defaultHeaders,
+            ...options.headers,
         },
-        credentials: 'include'
+        credentials: 'include',
+        ...options
     };
-    const fetchOptions = { ...defaultOptions, ...options };
 
     try {
         const response = await fetch(endpoint, fetchOptions);
-
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
             return { success: false, msg: errorData.msg || `서버 오류: ${response.status}` };
         }
-
         return await response.json();
     } catch (error) {
         console.error('API 요청 실패:', error);

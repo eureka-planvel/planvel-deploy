@@ -6,10 +6,30 @@ body {
     padding: 0;
 }
 
+/* 헤더 스타일 보완 */
 .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
-    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    /* 추가: 헤더가 겹치지 않도록 */
+    position: relative;
+    z-index: 10;
 }
+
+.login-btn,
+.signup-btn {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
 
 .logo {
     font-size: 20px;
@@ -38,15 +58,186 @@ h1 {
 }
 
 .start-btn {
-    background-color: black;
-    color: white;
+    background: none;
+    color: black;
     border: none;
-    padding: 12px 24px;
+    padding: 0;
     font-size: 16px;
     cursor: pointer;
-    transition: transform 0.2s;
+    text-decoration: underline;
 }
 
 .start-btn:hover {
     transform: scale(1.03);
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.popup-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    min-width: 120px;
+    z-index: 100;
+}
+
+
+/* 내 여행 리스트 타이틀 */
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* 여행 카드 스타일 */
+.travel-card {
+    background-color: #fff;
+    border: 1px solid #ffffff00; /* 연한 회색 테두리 */
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: none; /* 그림자 제거 */
+}
+
+.travel-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* 여행 제목 */
+.travel-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* 출발지 → 도착지 표시 */
+.travel-route {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* 날짜 */
+.travel-date {
+    font-size: 14px;
+    color: #999;
+}
+
+/* 상세보기 버튼 */
+.travel-card button {
+    margin-top: 15px;
+    background: none;
+    color: black;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.travel-card button:hover {
+    background-color: #bab9b994;
+}
+
+/* 빈 상태 안내 */
+.empty-state {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.empty-state-icon {
+    font-size: 50px;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.empty-state-text {
+    font-size: 18px;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.start-btn {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.start-btn:hover {
+    background-color: #333;
+}
+
+.travel-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.travel-actions button {
+    background: none;
+    color: black;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.travel-actions button:hover {
+    background-color: #bab9b994;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .travel-card {
+        padding: 15px;
+    }
+
+    .travel-title {
+        font-size: 18px;
+    }
+
+    .travel-route, .travel-date {
+        font-size: 13px;
+    }
 }

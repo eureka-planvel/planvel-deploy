@@ -7,11 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    document.getElementById('departure-display').textContent = travelInfo.departure || '-';
-    document.getElementById('arrival-display').textContent = travelInfo.arrival || '-';
-    document.getElementById('date-display').textContent = `${travelInfo.startDate || '-'} ~ ${travelInfo.endDate || '-'}`;
-    document.getElementById('transport-display').textContent = travelInfo.transport || '-';
-    document.getElementById('accommodation-display').textContent = travelInfo.accommodation || '-';
+    updateInfoPanel();
 
     const slider = document.getElementById('schedule-slider');
     const startDate = new Date(travelInfo.startDate);
@@ -19,11 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scheduleData = JSON.parse(localStorage.getItem('scheduleData')) || {};
 
-    const spotData = {
-        FOOD: ["김밥천국", "맛집1", "맛집2"],
-        TOURIST: ["광안리", "해운대", "부산타워"],
-        CAFE: ["스타벅스", "커피빈", "로컬카페"]
+    // Store API fetched spot data
+    const spotCache = {
+        FOOD: {},
+        TOURIST: {},
+        CAFE: {}
     };
+
+    // Initialize with region ID from travel info (default to 1 if not available)
+    const regionId = travelInfo.arrivalId || 1;
 
     const dayBoxes = [];
     let currentIndex = 0;
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', () => {
                 dayBox.querySelectorAll('.spot-type-btn').forEach(b => b.classList.remove('selected'));
                 btn.classList.add('selected');
-                renderSpotList(spotList, type);
+                fetchAndRenderSpotList(spotList, type, 1);
             });
             typeTab.appendChild(btn);
         });
@@ -86,9 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const scheduleList = document.createElement('ul');
         scheduleList.className = 'schedule-list';
 
-        // 기존 데이터 복원
         if (scheduleData[dateStr]) {
             scheduleData[dateStr].forEach(saved => {
+                // Assume saved is now an object with necessary spot info
                 addSpotToSchedule(scheduleList, saved);
             });
         }
@@ -107,7 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
         saveBtn.className = 'save-btn';
         saveBtn.textContent = '저장하기';
         saveBtn.addEventListener('click', () => {
-            const spots = Array.from(scheduleList.querySelectorAll('li')).map(li => li.dataset.spot);
+            const spots = Array.from(scheduleList.querySelectorAll('li')).map(li => {
+                // Extract the spot data that was stored in dataset
+                return JSON.parse(li.dataset.spot);
+            });
             scheduleData[dateStr] = spots;
             localStorage.setItem('scheduleData', JSON.stringify(scheduleData));
             updateScheduleSummary();
@@ -121,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scheduleWrapper.appendChild(scheduleList);
 
         dayBox.appendChild(nav);
-        dayBox.appendChild(scheduleWrapper);  // ⬅ 여기서 리스트랑 저장 버튼을 같이 포함
+        dayBox.appendChild(scheduleWrapper);
         dayBox.appendChild(typeTab);
         dayBox.appendChild(spotList);
 
@@ -131,87 +134,132 @@ document.addEventListener('DOMContentLoaded', () => {
     function showDay(index) {
         slider.innerHTML = '';
         slider.appendChild(dayBoxes[index].dayBox);
-        // 초기 FOOD 렌더링
-        renderSpotList(dayBoxes[index].spotList, 'FOOD');
+        fetchAndRenderSpotList(dayBoxes[index].spotList, 'FOOD', 1);
         dayBoxes[index].dayBox.querySelector('[data-type="FOOD"]').classList.add('selected');
     }
 
-    function renderSpotList(container, type) {
+    // Fetch spots from API and render them
+    async function fetchAndRenderSpotList(container, type, page) {
+        container.innerHTML = '';
+        
+        // Create loading indicator
+        const loadingIndicator = document.createElement('div');
+        loadingIndicator.textContent = '로딩 중...';
+        container.appendChild(loadingIndicator);
+        
+        try {
+            // Check if we already have this data cached
+            if (!spotCache[type][page]) {
+                // Fetch from API
+                const response = await fetch(`/api/spot/region/${regionId}?type=${type}&page=${page}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    spotCache[type][page] = result.data;
+                } else {
+                    throw new Error(result.msg || '데이터를 불러올 수 없습니다.');
+                }
+            }
+            
+            // Get spots data from cache
+            const spots = spotCache[type][page];
+            renderSpotList(container, spots, type, page);
+        } catch (error) {
+            console.error('Error fetching spots:', error);
+            container.innerHTML = `<div>데이터를 불러오는데 실패했습니다: ${error.message}</div>`;
+        }
+    }
+
+    function renderSpotList(container, spots, type, currentPage) {
         container.innerHTML = '';
 
-        const spots = spotData[type];
-        let currentPage = 0;
         const spotsPerPage = 9;
-
         const spotGrid = document.createElement('div');
         spotGrid.className = 'spot-grid';
 
         const navWrapper = document.createElement('div');
         navWrapper.className = 'spot-page-nav';
 
-        function renderPage(page) {
-            spotGrid.innerHTML = '';
-            const start = page * spotsPerPage;
-            const end = start + spotsPerPage;
-            const pageSpots = spots.slice(start, end);
-
-        pageSpots.forEach(spot => {
+        // Render spots in the grid
+        spots.forEach(spot => {
             const card = document.createElement('div');
             card.className = 'spot-card';
-            card.textContent = spot;
-            // ✅ 여기 수정!
+
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'spot-image';
+            imgContainer.style.backgroundImage = `url(${spot.thumbnailUrl})`;
+
+            const spotName = document.createElement('div');
+            spotName.className = 'spot-name';
+            spotName.textContent = spot.spotName;
+
+            card.appendChild(imgContainer);
+            card.appendChild(spotName);
+
             card.addEventListener('click', () => {
-                const scheduleList = container.closest('.day-box').querySelector('.schedule-list');
-                addSpotToSchedule(scheduleList, spot);
+                fetchSpotDetail(spot.id).then(spotDetail => {
+                    if (spotDetail) {
+                        const scheduleList = container.closest('.day-box').querySelector('.schedule-list');
+                        addSpotToSchedule(scheduleList, spotDetail);
+                    }
+                });
             });
+
             spotGrid.appendChild(card);
         });
-        }
 
-        function renderNav() {
-            navWrapper.innerHTML = '';
-            const totalPages = Math.ceil(spots.length / spotsPerPage);
-
-            if (currentPage > 0) {
-                const prev = document.createElement('button');
-                prev.textContent = '＜';
-                prev.addEventListener('click', () => {
-                    currentPage--;
-                    renderPage(currentPage);
-                    renderNav();
-                });
-                navWrapper.appendChild(prev);
-            }
-
-            if (currentPage < totalPages - 1) {
-                const next = document.createElement('button');
-                next.textContent = '＞';
-                next.addEventListener('click', () => {
-                    currentPage++;
-                    renderPage(currentPage);
-                    renderNav();
-                });
-                navWrapper.appendChild(next);
-            }
-        }
+        // Navigation buttons
+        const prevBtn = document.createElement('button');
+        prevBtn.textContent = '＜';
+        prevBtn.className = 'nav-btn';
+        prevBtn.disabled = currentPage <= 1;
+        prevBtn.addEventListener('click', () => {
+            fetchAndRenderSpotList(container, type, currentPage - 1);
+        });
+        
+        const pageIndicator = document.createElement('span');
+        pageIndicator.textContent = `${currentPage}`;
+        pageIndicator.style.margin = '0 10px';
+        
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = '＞';
+        nextBtn.className = 'nav-btn';
+        // Disable next button if we have fewer spots than maximum per page
+        nextBtn.disabled = spots.length < spotsPerPage;
+        nextBtn.addEventListener('click', () => {
+            fetchAndRenderSpotList(container, type, currentPage + 1);
+        });
+        
+        navWrapper.appendChild(prevBtn);
+        navWrapper.appendChild(pageIndicator);
+        navWrapper.appendChild(nextBtn);
 
         container.appendChild(spotGrid);
         container.appendChild(navWrapper);
-        renderPage(currentPage);
-        renderNav();
     }
 
-    function getSpotType(spot) {
-    if (spotData.FOOD.includes(spot)) return 'FOOD';
-    if (spotData.TOURIST.includes(spot)) return 'TOURIST';
-    if (spotData.CAFE.includes(spot)) return 'CAFE';
-    return 'UNKNOWN';
-}
+    // Fetch spot details from API
+    async function fetchSpotDetail(spotId) {
+        try {
+            const response = await fetch(`/api/spot/${spotId}`);
+            const result = await response.json();
+            
+            if (result.success) {
+                return result.data;
+            } else {
+                throw new Error(result.msg || '상세 정보를 불러올 수 없습니다.');
+            }
+        } catch (error) {
+            console.error('Error fetching spot detail:', error);
+            alert(`상세 정보를 불러오는데 실패했습니다: ${error.message}`);
+            return null;
+        }
+    }
 
     function addSpotToSchedule(scheduleList, spot) {
-        const type = getSpotType(spot);
         const li = document.createElement('li');
-        li.dataset.spot = spot;
+        // Store complete spot data as JSON in dataset
+        li.dataset.spot = JSON.stringify(spot);
         li.draggable = true;
 
         const dragHandle = document.createElement('span');
@@ -219,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dragHandle.textContent = '≡';
 
         const text = document.createElement('span');
-        text.textContent = `(${type === 'FOOD' ? '음식' : type === 'TOURIST' ? '관광지' : '카페'}) ${spot}`;
+        text.textContent = `(${spot.type === 'FOOD' ? '음식' : spot.type === 'TOURIST' ? '관광지' : '카페'}) ${spot.spotName}`;
 
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'X';
@@ -278,7 +326,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const spotsCell = document.createElement('td');
             spotsCell.className = 'summary-spots';
-            spotsCell.textContent = scheduleData[date].length ? scheduleData[date].join(' → ') : '-';
+            
+            if (scheduleData[date].length) {
+                // Get names from spot objects
+                const spotNames = scheduleData[date].map(spot => spot.spotName);
+                spotsCell.textContent = spotNames.join(' → ');
+            } else {
+                spotsCell.textContent = '-';
+            }
 
             row.appendChild(dateCell);
             row.appendChild(spotsCell);
@@ -287,19 +342,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
         summary.appendChild(table);
     }
+
     function getDragAfterElement(container, y) {
-    const draggableElements = [...container.querySelectorAll('li:not(.dragging)')];
-    return draggableElements.reduce((closest, child) => {
-        const box = child.getBoundingClientRect();
-        const offset = y - box.top - box.height / 2;
-        if (offset < 0 && offset > closest.offset) {
-            return { offset: offset, element: child };
-        } else {
-            return closest;
-        }
-    }, { offset: Number.NEGATIVE_INFINITY }).element;
+        const draggableElements = [...container.querySelectorAll('li:not(.dragging)')];
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
     }
 
     showDay(currentIndex);
     updateScheduleSummary();
+
+    function formatDate(dateStr) {
+        if (!dateStr) return '-';
+        const [year, month, day] = dateStr.split('-');
+        return `${year}.${month}.${day}`;
+    }
+
+    function updateInfoPanel() {
+        const travelInfo = JSON.parse(localStorage.getItem('travelInfo'));
+        if (!travelInfo) return;
+
+        const departureStation = travelInfo.departureStation?.name || '-';
+        const arrivalStation = travelInfo.arrivalStation?.name || '-';
+        const departureSchedule = travelInfo.departureSchedule
+            ? `${travelInfo.departureSchedule.departureTime.substring(0, 5)} (${travelInfo.departureSchedule.transportNumber})`
+            : '-';
+        const returnSchedule = travelInfo.returnSchedule
+            ? `${travelInfo.returnSchedule.departureTime.substring(0, 5)} (${travelInfo.returnSchedule.transportNumber})`
+            : '-';
+
+        const accommodationText = travelInfo.accommodation
+            ? `${travelInfo.accommodation.name} (${travelInfo.accommodation.isHotel ? '호텔' : '기타'})`
+            : '-';
+
+        const infoCard = document.querySelector('.info-card');
+        infoCard.innerHTML = `
+            <div class="note-line"><span class="label">출발지</span><span class="value">${travelInfo.departureName || '-'}</span></div>
+            <div class="note-line"><span class="label">도착지</span><span class="value">${travelInfo.arrivalName || '-'}</span></div>
+            <div class="note-line"><span class="label">여행기간</span><span class="value">${formatDate(travelInfo.startDate)} ~ ${formatDate(travelInfo.endDate)}</span></div>
+            <div class="note-line"><span class="label">이동수단</span><span class="value">${travelInfo.transport ?? '-'}</span></div>
+            <div class="note-line"><span class="label">출발역</span><span class="value">${departureStation}</span></div>
+            <div class="note-line"><span class="label">도착역</span><span class="value">${arrivalStation}</span></div>
+            <div class="note-line"><span class="label">가는편</span><span class="value">${departureSchedule}</span></div>
+            <div class="note-line"><span class="label">오는편</span><span class="value">${returnSchedule}</span></div>
+            <div class="note-line"><span class="label">숙소</span><span class="value">${accommodationText}</span></div>
+        `;
+    }
 });

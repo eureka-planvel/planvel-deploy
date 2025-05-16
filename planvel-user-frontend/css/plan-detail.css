@@ -1,0 +1,210 @@
+body {
+    font-family: 'Pretendard', sans-serif;
+    margin: 0;
+    background-color: #fff;
+    color: #111;
+}
+
+/* 헤더 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.profile-img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+h1#title {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 30px 0 10px;
+    text-align: center;
+}
+
+#route, #date, #transport, #accommodation {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* 일정 섹션 */
+.day-section {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.day-section h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #111;
+    padding-bottom: 5px;
+}
+
+.spot-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.spot-card {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.spot-img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.spot-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.spot-name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.spot-region, .spot-address {
+    font-size: 14px;
+    color: #555;
+}
+
+/* 닫기 버튼 */
+.close-btn-container {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.close-btn {
+    background-color: #111;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+    background-color: #333;
+}
+
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.popup-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    min-width: 120px;
+    z-index: 100;
+}
+
+.plan-info {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #111;
+    border-radius: 12px;
+}
+
+.plan-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.plan-title h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.plan-period {
+    font-size: 16px;
+    color: #555;
+}
+
+.plan-meta {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.meta-item .label {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.meta-item .value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #111;
+}

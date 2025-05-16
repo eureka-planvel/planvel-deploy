@@ -4,29 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planvel - Step 1</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
     <link rel="stylesheet" href="css/step-common.css">
     <link rel="stylesheet" href="css/step1.css">
 </head>
 <body>
     <div class="header">
         <span class="logo" onclick="location.href='index.html'">Planvel</span>
-        <div class="user-info">
+        <div id="auth-buttons">
+            <button class="login-btn" onclick="location.href='login.html'">로그인</button>
+            <button class="signup-btn" onclick="location.href='signup.html'">회원가입</button>
+        </div>
+        <div class="user-info" id="user-info" style="display: none;">
             <img src="images/noProfile.png" alt="프로필" class="profile-img">
-            <span>홍길동님</span>
+            <span id="username">홍길동님</span>
             <div class="popup-menu" id="popupMenu">
                 <a href="my-info-view.html">내 정보</a>
                 <a href="my-reviews.html">내가 쓴 리뷰</a>
                 <a href="my-travels.html">내 여행 보기</a>
+                <a href="#" id="logoutBtn">로그아웃</a>
             </div>
         </div>
     </div>
-
 
     <div id="alert-banner" class="alert-banner"></div>
 
     <div class="step-header">
         <div class="step-indicator">STEP 1</div>
-        <a href="transport-select.html" class="next">다음 →</a>
+        <a href="#" class="next" id="next-button">다음 →</a>
     </div>
 
     <div class="main-content">
@@ -39,14 +44,93 @@
 
         <!-- 출도착지 선택 -->
         <div class="input-row">
-            <div id="departure-select" class="location-select">출발지 선택</div>
+            <div class="location-select-container">
+                <div id="departure-select" class="location-select">출발지 선택</div>
+                <div id="departure-dropdown" class="location-dropdown" style="display: none;"></div>
+            </div>
             <span class="arrow">→</span>
-            <div id="arrival-select" class="location-select">도착지 선택</div>
+            <div class="location-select-container">
+                <div id="arrival-select" class="location-select">도착지 선택</div>
+                <div id="arrival-dropdown" class="location-dropdown" style="display: none;"></div>
+            </div>
         </div>
+        
+        <!-- 출발지/도착지 동일 경고 메시지 -->
+        <div id="location-warning" class="location-warning">출발지와 도착지가 같을 수 없습니다.</div>
     </div>
 
+    <!-- 로그인 상태 체크 스크립트 -->
+    <script>
+    // 공통 로그인 체크 함수
+    function checkLoginStatus() {
+        const userInfo = document.getElementById('user-info');
+        const authButtons = document.getElementById('auth-buttons');
+        
+        // 로컬 스토리지에서 로그인 정보 확인 (임시 대체)
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        
+        if (isLoggedIn) {
+            // 로그인 상태
+            userInfo.style.display = 'flex';
+            authButtons.style.display = 'none';
+            
+            // 사용자 이름 설정 (있는 경우)
+            const userName = localStorage.getItem('userName');
+            if (userName) {
+                document.getElementById('username').innerText = userName + '님';
+            }
+            
+            // 프로필 이미지 설정 (있는 경우)
+            const profileImg = localStorage.getItem('profileImg');
+            if (profileImg) {
+                document.querySelector('#user-info .profile-img').src = profileImg;
+            }
+        } else {
+            // 비로그인 상태
+            userInfo.style.display = 'none';
+            authButtons.style.display = 'flex';
+        }
+        
+        // 로그아웃 이벤트 리스너
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 로그아웃 처리 (로컬 스토리지 정보 삭제)
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('profileImg');
+                
+                alert('로그아웃 되었습니다.');
+                window.location.reload();
+            });
+        }
+        
+        // 팝업 메뉴 토글
+        const userInfoEl = document.getElementById('user-info');
+        const popupMenu = document.getElementById('popupMenu');
+        
+        if (userInfoEl && popupMenu) {
+            userInfoEl.addEventListener('click', function(e) {
+                e.stopPropagation();
+                popupMenu.style.display = popupMenu.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            document.addEventListener('click', function() {
+                popupMenu.style.display = 'none';
+            });
+        }
+    }
+    
+    // 페이지 로드 시 로그인 상태 확인
+    document.addEventListener('DOMContentLoaded', checkLoginStatus);
+    </script>
+
+    <!-- 메인 스크립트 -->
     <script src="js/step1.js"></script>
     <script src="js/common.js"></script>
-    <script src="js/user-popup.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/login-check.js"></script>
 </body>
 </html>

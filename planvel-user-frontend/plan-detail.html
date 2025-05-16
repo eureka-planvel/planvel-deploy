@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>여행 상세</title>
+    <link rel="stylesheet" href="/css/plan-detail.css">
+
+</head>
+<body>
+    <!-- ✅ 공통 헤더 -->
+    <div class="header">
+        <span class="logo" onclick="location.href='/index.html'">Planvel</span>
+        <div id="auth-buttons">
+            <button class="login-btn" onclick="location.href='/login.html'">로그인</button>
+            <button class="signup-btn" onclick="location.href='/signup.html'">회원가입</button>
+        </div>
+        <div class="user-info" id="user-info" style="display: none;">
+            <img src="images/noProfile.png" alt="프로필" class="profile-img">
+            <span id="username">홍길동님</span>
+            <div class="popup-menu" id="popupMenu">
+                <a href="/my-info-view.html">내 정보</a>
+                <a href="/my-reviews.html">내가 쓴 리뷰</a>
+                <a href="/my-travels.html">내 여행 보기</a>
+                <a href="#" id="logoutBtn">로그아웃</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ 상세내용 -->
+    <h1 id="title">여행 제목</h1>
+    <div id="route">출발지 → 도착지</div>
+    <div id="date">여행 기간</div>
+    <div id="transport">이동수단</div>
+    <div id="accommodation">숙소</div>
+
+    <div id="schedule">
+        <!-- 일정 들어가는 자리 -->
+    </div>
+
+    <!-- ✅ 닫기 버튼 -->
+    <div class="close-btn-container">
+        <button class="close-btn" onclick="history.back()">닫기</button>
+    </div>
+
+    <script src="/js/plan-detail.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/login-check.js"></script>
+</body>
+</html>

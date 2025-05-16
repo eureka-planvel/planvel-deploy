@@ -11,12 +11,37 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    border-bottom: 1px solid #eee;
 }
 
 .logo {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     cursor: pointer;
+}
+
+#auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.login-btn, .signup-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.login-btn:hover, .signup-btn:hover {
+    background-color: black;
+    color: white;
 }
 
 .user-info {
@@ -27,13 +52,22 @@ body {
     color: #333;
     position: relative;
     cursor: pointer;
+    padding-right: 5px;
 }
 
 .profile-img {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     object-fit: cover;
+    flex-shrink: 0;
+}
+
+#username {
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .popup-menu {
@@ -45,13 +79,13 @@ body {
     border: 1px solid #ddd;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     border-radius: 4px;
-    min-width: 120px;
+    min-width: 150px;
     z-index: 100;
 }
 
 .popup-menu a {
     display: block;
-    padding: 10px;
+    padding: 10px 15px;
     color: black;
     text-decoration: none;
     font-size: 14px;
@@ -62,48 +96,400 @@ body {
 }
 
 .main-content {
-    padding: 40px 20px;
+    padding: 30px 20px;
     max-width: 900px;
     margin: 0 auto;
+    background-color: white;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #000;
 }
 
 .select-container {
-    display: flex;
-    justify-content: center;
     margin-bottom: 30px;
+    position: relative;
 }
 
 .location-select {
-    font-size: 28px;
+    font-size: 32px;
     border-bottom: 1px solid black;
-    padding: 10px 20px;
+    padding: 8px 0;
     cursor: pointer;
+    display: inline-block;
+}
+
+.region-dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    margin-top: 8px;
+    width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 200;
+}
+
+.region-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.region-item:hover {
+    background-color: #f5f5f5;
 }
 
 .review-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-height: 200px;
 }
 
+.empty-msg {
+    color: #666;
+    text-align: center;
+    padding: 60px 0;
+    font-size: 16px;
+}
+
+/* 리뷰 작성 버튼 스타일 */
+.write-review-btn {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    transition: background-color 0.3s;
+}
+
+.write-review-btn:hover {
+    background-color: #333;
+}
+
+/* 모달 스타일 */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #999;
+    background: none;
+    border: none;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+/* 리뷰 폼 스타일 */
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-control {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #999;
+}
+
+.review-content {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: black;
+    color: white;
+    padding: 12px 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #333;
+}
+
+/* 리뷰 아이템 위치 상대적으로 변경 */
 .review-item {
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: relative;
+    margin-bottom: 20px;
 }
 
-.review-item h3 {
-    margin: 0 0 10px;
+/* 리뷰 헤더 레이아웃 수정 */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* 상단 정렬로 변경 */
+    margin-bottom: 15px;
+    padding-right: 90px; /* 오른쪽에 수정/삭제 버튼을 위한 공간 확보 */
+}
+
+.review-title {
+    margin: 0;
     font-size: 18px;
+    color: #000;
+    font-weight: bold;
+    flex: 1; /* 제목이 가능한 많은 공간을 차지하도록 */
+    padding-right: 10px; /* 날짜와의 간격 */
 }
 
-.review-item p {
-    margin: 0 0 8px;
+
+.review-content {
+    margin: 0 0 15px;
     font-size: 14px;
     color: #333;
+    line-height: 1.6;
 }
 
-.reviewer {
+.review-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.author-img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-name {
+    font-size: 13px;
+    color: #555;
+}
+
+/* 좋아요 버튼 스타일 */
+.like-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.like-button:hover {
+    background-color: #f0f0f0;
+}
+
+.like-button.active {
+    background-color: #ffe0e0;
+    border-color: #ffb0b0;
+    color: #ff5252;
+}
+
+.like-button .count {
+    font-weight: bold;
+}
+
+.like-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.2s;
+}
+
+.like-button:hover .like-icon {
+    transform: scale(1.1);
+}
+
+/* 좋아요 아이콘 대신 이모지 사용 */
+.like-icon-emoji {
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* 정렬 버튼 스타일 */
+.sort-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+.sort-button {
+    padding: 8px 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sort-button:hover {
+    background-color: #f5f5f5;
+}
+
+.sort-button.active {
+    background-color: black;
+    color: white;
+    border-color: black;
+}
+
+/* 리뷰 작성 버튼 위치 조정 */
+.review-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    margin-top: 20px;
+}
+
+/* 리뷰 수정/삭제 버튼 스타일 수정 */
+.review-actions-menu {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0); /* 배경에 약간의 투명도 */
+    padding: 5px 8px;
+    border-radius: 4px;
+    z-index: 5; /* 다른 요소보다 위에 표시 */
+}
+.review-action-btn {
+    background: none;
+    border: none;
     font-size: 12px;
-    color: #999;
+    color: #666;
+    cursor: pointer;
+    padding: 2px 5px;
+    transition: all 0.2s;
+    text-decoration: underline; /* 밑줄 추가 */
+}
+
+.review-date {
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap; /* 날짜가 줄바꿈되지 않도록 */
+}
+
+.review-action-btn:hover {
+    color: #333;
+    text-decoration: underline; /* 호버 시에도 밑줄 유지 */
+}
+
+.review-action-btn.edit:hover {
+    color: #2b7de9;
+}
+
+.review-action-btn.delete:hover {
+    color: #e94c4c;
+}
+
+/* 리뷰 수정 모달 스타일 */
+#review-edit-modal .modal-title {
+    color: #2b7de9;
+}
+
+#review-edit-modal .submit-btn {
+    background-color: #2b7de9;
+}
+
+.plan-link-preview {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: box-shadow 0.2s;
+}
+
+.plan-link-preview:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #f0f0f0;
 }

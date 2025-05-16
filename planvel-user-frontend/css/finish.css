@@ -156,3 +156,23 @@ body.finish-page .info-card .schedule-summary {
 .popup-menu a:hover {
     background-color: #f5f5f5;
 }
+
+body.finish-page .next {
+    background-color: #007bff00;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+body.finish-page .next:hover {
+    background-color: #00000000;
+}
+
+body.finish-page .next:active {
+    transform: scale(0.98);
+}
